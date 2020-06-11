@@ -55,20 +55,24 @@ while( $jour< 5 )
     //var_dump($recup_event[0]['debut']);
     foreach ($recup_event as $categorie => $valeur)
     {
-        $jour_heure_event = $recup_event[0]['debut'];
+        $jour_heure_event = $valeur['debut'];
         $explode_event = explode(" ", $jour_heure_event); //array jour heure du début
 
         $event_jour = $explode_event[0]; //date de l'event
-        $event_heure = $explode_event[1]; // heure d el'évent
+        $jour_explode = explode("-", $event_jour);
+        $jour_week_num = date("N", mktime(0, 0, 0, $jour_explode[1], $jour_explode[2], $jour_explode[0])); //jour semaine en numerique
+        
 
-    //echo '1'.$event_jour.'<br/>' ;
-    //echo '2'.$event_heure ;
+        
+        $event_heure = $explode_event[1]; // heure de l'évent
+        $heure_explode = explode(":", $event_heure);
+        $heure_only = date("G", mktime($heure_explode[0], $heure_explode[1], $heure_explode[2], 0,0,0)); //recup seulement le nombre des heures de l'évènement
 
-        //$jour_week_num = date(N, mktime()) //jour semaine en numerique
-        //$heure_only = date(G, mktime()) //recup seulement le nombre des heures de l'évènement
-    
     }
+    var_dump($heure_only);
+    var_dump($jour_week_num);
 
+    
 echo '<td>'. "<a href=reservation_form.php> réserver le créneau </a>" . '</td>'; // affichage jours
 $jour++;
 }
