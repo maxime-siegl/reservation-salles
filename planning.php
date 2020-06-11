@@ -42,6 +42,11 @@ catch(Exception $e)
         die('Erreur : '.$e->getMessage());
 }
 
+$req = $bdd->prepare('SELECT * FROM reservations INNER JOIN utilisateurs ON reservations.id_utilisateurs= utilisateurs.id');
+$req->execute(array());
+$resultat = $req->fetch();
+var_dump($resultat);
+
 echo '<table>';
 
 echo '<thead><th></th><th>lundi</th><th>mardi</th><th>mercredi</th><th>jeudi</th><th>vendredi</th>';
@@ -56,15 +61,15 @@ $jour=0;
 
 while( $jour< 5 )
 {
-//  if le créneau a un événement : titre de l'événement et lien vers l'événement ou du créateur de l'événement
 
-  // else lien vers la création d'événement
+
 echo '<td>'. "<a href=reservation_form.php> réserver le créneau </a>" . '</td>'; // affichage jours
 $jour++;
 }
 $heure++;
 echo "</tr>";
 }
+
 
 echo '</table>';
 ?>
