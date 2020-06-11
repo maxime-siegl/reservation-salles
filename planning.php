@@ -32,15 +32,7 @@ td {
 <h1><center>Planning de la semaine</center></h1>
 
 <?php
-
-try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=reservationsalles;charset=utf8', 'root', '');
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
+    $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
 
 echo '<table>';
 
@@ -56,9 +48,27 @@ $jour=0;
 
 while( $jour< 5 )
 {
-//  if le créneau a un événement : titre de l'événement et lien vers l'événement ou du créateur de l'événement
+    $event = "SELECT titre, description, debut, fin FROM reservations INNER JOIN utilisateurs ON utilisateurs.id = reservations.id_utilisateur";
+    $event_query = mysqli_query($bdd, $event);
+    $recup_event = mysqli_fetch_all($event_query, MYSQLI_ASSOC);
+    //var_dump($recup_event);
+    //var_dump($recup_event[0]['debut']);
+    foreach ($recup_event as $categorie => $valeur)
+    {
+        $jour_heure_event = $recup_event[0]['debut'];
+        $explode_event = explode(" ", $jour_heure_event); //array jour heure du début
 
-  // else lien vers la création d'événement
+        $event_jour = $explode_event[0]; //date de l'event
+        $event_heure = $explode_event[1]; // heure d el'évent
+
+    //echo '1'.$event_jour.'<br/>' ;
+    //echo '2'.$event_heure ;
+
+        //$jour_week_num = date(N, mktime()) //jour semaine en numerique
+        //$heure_only = date(G, mktime()) //recup seulement le nombre des heures de l'évènement
+    
+    }
+
 echo '<td>'. "<a href=reservation_form.php> réserver le créneau </a>" . '</td>'; // affichage jours
 $jour++;
 }
