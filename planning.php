@@ -23,7 +23,6 @@ if (isset($_GET['deconnexion'])) {
 
     <header>
       <?php
-
 // si l'utilisateur est connecté le header est personnalisé
 
       if(isset($_SESSION['login'])){
@@ -56,14 +55,14 @@ while( $heure < 20 )
 {
 echo '<tr><td>'. $heure . '</td>';
 
-$jour=0;
+$jour=1;
 
-while( $jour< 5 )
+while( $jour< 6 )
 {
 
   //requête jointe entre les deux tables de la BDD pour prendre les infos sur les évenements et qui l'a crée
 
-    $event = "SELECT titre, description, debut, fin FROM reservations INNER JOIN utilisateurs ON utilisateurs.id = reservations.id_utilisateur";
+    $event = "SELECT titre, description, debut, fin FROM reservations INNER JOIN utilisateurs ON utilisateurs.id = reservations.id_utilisateur WHERE week(debut) = week(curdate())";
     $event_query = mysqli_query($bdd, $event);
     $recup_event = mysqli_fetch_all($event_query, MYSQLI_ASSOC);
     //var_dump($recup_event);
@@ -95,16 +94,13 @@ $where_resa = $heure_only . $jour_week_num;
 //ici je dis que le nom de l'événement correspond à sa valeur, définie plus haut, son début et son titre.
 $nom=$valeur['titre'];
 
-var_dump($place);
-
-var_dump($where_resa);
-echo '----';
+//var_dump($place);
+//var_dump($where_resa);
+//echo '----';
 
 //s'il y a une correspondance entre un endroit où est l'événement et une case existante
 if($place == $where_resa)
   {
-    var_dump($nom);
-
   ?>
 <td ><?php //affichage du nom de l'événement
  echo '<p>'. $nom. '</p>'?></td>
