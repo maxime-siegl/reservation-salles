@@ -64,13 +64,21 @@
                 </p>
             </form>
         <?php
-                if(isset($_POST['creer'])) // rajouter les conditions du form ?
+                if(isset($_POST['creer']) && !empty($_POST['titre']) && !empty($_POST['description']) && !empty($_POST['debut']) && !empty($_POST['fin']) && !empty($_POST['heure_debut']) && !empty($_POST['heure_fin']))
                 {
                     $titre = $_POST['titre'];
                     $description = $_POST['description'];
                     $debut = $_POST['debut']. " " .$_POST['heure_debut'];
                     $fin = $_POST['fin']. " " .$_POST['heure_fin'];
                     $utilisateur = $_SESSION['id'];
+
+                    
+                    if () // date début == date fin
+                    if () // heure de début doit se trouver apres heure now?
+                    if () // heure de fin - heure de début == 1
+                    if () // Pas résa weekend
+                    if () // créneau déjà occupé
+
 
                     $ajout_event = "INSERT INTO reservations VALUES (null, '$titre', '$description', '$debut', '$fin', '$utilisateur')";
                     $ajout_query = mysqli_query($bdd, $ajout_event);
