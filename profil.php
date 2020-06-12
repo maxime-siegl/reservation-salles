@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(isset($_POST['deconnexion']))
+    if(isset($_GET['deconnexion']))
     {
         session_destroy();
     }
@@ -10,11 +10,27 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <title>Votre Profil</title>
 </head>
 <body>
-    <header></header>
-    <main>
+  <header>
+    <?php
+
+  // si l'utilisateur est connecté le header est personnalisé
+
+    if(isset($_SESSION['login'])){
+      echo '<ul><li> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="planning.php"> accéder au planning </a></li>'.'<li><a href="profil.php?deconnexion">
+          Déconnexion </a></li></ul>' ;
+    }
+    else { ?>
+      <ul>
+      <li><a href="index.php">accueil</a></li>
+      <li><a href="inscription.php">inscription</a></li>
+      </ul>
+    <?php  }?>
+
+  </header>    <main>
         <?php
             if (isset($_SESSION['login']))
             {
@@ -44,7 +60,7 @@
                         $login = $_POST['login'];
                         $id = $_SESSION['id'];
 
-                        $verif_log = "SELECT count(*) as num WHERE login = '$login'"; // vérification si le login existe 
+                        $verif_log = "SELECT count(*) as num WHERE login = '$login'"; // vérification si le login existe
                         $verif_query = mysqli_query($bdd, $verif_log);
                         $info_log = mysqli_fetch_all($verif_query, MYSQLI_ASSOC);
 
