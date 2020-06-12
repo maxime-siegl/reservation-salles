@@ -94,13 +94,17 @@ $where_resa = $heure_only . $jour_week_num;
 
 //ici je dis que le nom de l'événement correspond à sa valeur, définie plus haut, son début et son titre.
 $nom=$valeur['titre'];
-//var_dump($nom);
 
-//var_dump($place);
+var_dump($place);
+
+var_dump($where_resa);
+echo '----';
 
 //s'il y a une correspondance entre un endroit où est l'événement et une case existante
 if($place == $where_resa)
   {
+    var_dump($nom);
+
   ?>
 <td ><?php //affichage du nom de l'événement
  echo '<p>'. $nom. '</p>'?></td>

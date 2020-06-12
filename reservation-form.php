@@ -72,8 +72,17 @@
                     $fin = $_POST['fin']. " " .$_POST['heure_fin'];
                     $utilisateur = $_SESSION['id'];
 
+                    $jour_debut_explode = explode("-", $_POST['debut']);
+                    $jour_debut_week_num = date("N", mktime(0, 0, 0, $jour_debut_explode[1], $jour_debut_explode[0], $jour_debut_explode[2])); //jour du debut de l'event semaine en numerique
                     
-                    if () // date début == date fin
+                    $jour_fin_eplxode = explode("-", $_POST['fin']);
+                    $jour_fin_week_num = date("N", mktime(0,0,0, $jour_fin_eplxode[1], $jour_fin_eplxode[0], $jour_fin_eplxode[2])) //jour de la fin de l'event semaine en numerique
+
+                    if ($jour_debut_week_num == $jour_fin_week_num) // date de début == fin
+                    {
+                        
+                    }
+
                     if () // heure de début doit se trouver apres heure now?
                     if () // heure de fin - heure de début == 1
                     if () // Pas résa weekend
@@ -82,7 +91,7 @@
 
                     $ajout_event = "INSERT INTO reservations VALUES (null, '$titre', '$description', '$debut', '$fin', '$utilisateur')";
                     $ajout_query = mysqli_query($bdd, $ajout_event);
-                    header('location:reservation-form.php');
+                    //header('location:reservation-form.php');
                 }
                 mysqli_close($bdd);
             }
