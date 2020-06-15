@@ -32,19 +32,39 @@
     <main>
       <div class="content_reservation_form">
 
+        <h1>Je réserve un créneau</h1>
+
         <?php
             if (isset($_SESSION['login']))
             {
                 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
         ?>
+        <div class="container">
+
                 <form action="reservation-form.php" method="POST">
                     <p>
+                      <div class="style_label">
                         <label for="titre">Titre</label>
+
+                      </div>
+                      <div class="style_input">
                         <input type="text" name="titre" id="titre" required>
+                      </div>
+                      <div class="style_label">
                         <label for="description">Description</label>
-                        <textarea name="description" id="description" cols="30" rows="10" placeholder="Décrivez un peu votre évènement..." required></textarea>
-                        <label for="debut">Date du début de l'évènement:</label>
-                        <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" required>
+
+                      </div>
+<div class="style_input">
+  <textarea name="description" id="description" cols="30" rows="10" placeholder="Décrivez un peu votre évènement..." required></textarea>
+
+</div>
+<div class="style_label">
+  <label for="debut">Date du début de l'évènement:</label>
+
+</div>
+<div class="style_input">
+  <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" required>
+</div>
                         <select name="heure_debut" id="heure_debut" required>
                             <?php
                                 for($horaire_debut = 8; $horaire_debut <=19; $horaire_debut++)
@@ -64,8 +84,13 @@
                                 }
                             ?>
                         </select>
-                        <label for="fin">Date de fin de l'évènement</label>
-                        <input type="date" name="fin" id="fin" min="<?php echo date('Y-m-d'); ?>" required>
+                        <div class="style_label">
+                          <label for="fin">Date de fin de l'évènement</label>
+                        </div>
+                        <div class="style_input">
+                          <input type="date" name="fin" id="fin" min="<?php echo date('Y-m-d'); ?>" required>
+
+                        </div>
                         <select name="heure_fin" id="heure_fin" required>
                             <?php
                                 for($horaire_fin = 9; $horaire_fin <=20; $horaire_fin++)
@@ -88,6 +113,8 @@
                         <button type="submit" name="creer" class="bouton">Créer</button>
                 </p>
             </form>
+          </div>
+
 
         <?php
                 if(isset($_POST['creer']) && !empty($_POST['titre']) && !empty($_POST['description']) && !empty($_POST['debut']) && !empty($_POST['fin']) && !empty($_POST['heure_debut']) && !empty($_POST['heure_fin']))

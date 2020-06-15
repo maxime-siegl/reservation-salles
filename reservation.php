@@ -18,8 +18,8 @@ session_start();
 // si l'utilisateur est connecté le header est personnalisé
 
     if(isset($_SESSION['login'])){
-      echo '<ul><li> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="profil.php"> votre profil </a></li>'.'<li><a href="planning.php">
-          Retour au planning </a></li></ul>' ;
+      echo '<div class="sidenav"> <a href="index.php">Accueil</a></li>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="profil.php"> votre profil </a>'.'<a href="planning.php">
+          Retour au planning </a></div>' ;
     }
     else { ?>
       <ul>
@@ -30,6 +30,8 @@ session_start();
 
   </header>
     <main>
+      <div class="content_reservation">
+
       <?php
       // on se connecte à notre base
       $bdd = mysqli_connect("127.0.0.1", "root", "", "reservationsalles");
@@ -49,6 +51,7 @@ echo '<h1>'. $ligne['titre']. '</h1>';
           //$id_resa = $info_reservation[0]['id'];
 
       		?>
+        </div>
 
     </main>
     <footer></footer>

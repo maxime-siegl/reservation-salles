@@ -27,21 +27,25 @@ if (isset($_GET['deconnexion'])) {
 // si l'utilisateur est connecté le header est personnalisé
 
       if(isset($_SESSION['login'])){
-        echo '<ul><li> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="profil.php"> votre profil </a></li>'.'<li><a href="profil.php?deconnexion">
-            Déconnexion </a></li></ul>' ;
+        echo '<div class="sidenav"><a href="index.php">Accueil</a>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="profil.php"> votre profil </a>'.'<a href="profil.php?deconnexion">
+            Déconnexion </a></div>' ;
       }
       else { ?>
-        <ul>
-        <li><a href="index.php">accueil</a></li>
-        <li><a href="inscription.php">inscription</a></li>
-        </ul>
+        <div class="sidenav">
+        <a href="index.php">accueil</a>
+        <a href="inscription.php">inscription</a>
+      </div>
       <?php  }?>
 
     </header>
 
 <main>
+<div class="content_planning">
 
 <h1><center>Planning de la semaine</center></h1>
+
+<p>Cliquez sur <i> réserver un créenau </i> pour créer un événement</p>
+<p>Vous pouvez aussi consulter les événements déjà crée en cliquant dessus. </p>
 
 <?php
     $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
@@ -103,8 +107,8 @@ $nom=$valeur['titre'];
 if($place == $where_resa)
   {
 
-    //modifier requête
-    $info_resa = "SELECT * FROM reservations WHERE /////// ";
+
+    $info_resa = "SELECT * FROM reservations ";
     $info_query = mysqli_query($bdd, $info_resa);
     $info_reservation = mysqli_fetch_all($info_query, MYSQLI_ASSOC);
 
@@ -134,6 +138,7 @@ echo "</tr>";
 }
 echo '</table>';
 ?>
+</div>
 
 </main>
 </body>

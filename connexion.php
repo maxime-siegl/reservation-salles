@@ -1,15 +1,15 @@
-
 <?php
     session_start();
     if(isset($_POST['deconnexion']))
     {
         session_destroy();
+        header('index.php');
     }
     $message = "";
 
     if(isset($_SESSION['login'])){
-      echo 'class="sidenav"><a href="index.php">Accueil</a>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="planning.php"> accéder au planning </li>'.'<a href="profil.php?deconnexion">
-          Déconnexion </a>' ;
+      echo '<div class="sidenav"><a href="index.php">Accueil</a>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="planning.php"> accéder au planning'.'<a href="connexion.php?deconnexion">
+          Déconnexion </a></div>' ;
     }
     else { ?>
       <div class="sidenav">
@@ -72,12 +72,11 @@
 </div>
                     </p>
                   </div>
-                </div>
 
                 </form>
 
-              <img src="img/connexion.jpg" alt="">
-
+                <img src="img/connexion.jpg" alt="">
+              </div>
 
         <?php
                 if(isset($_POST['connexion']))
@@ -98,7 +97,7 @@
                             session_start();
                             $_SESSION['login'] = $infos[0]['login'];
                             $_SESSION['id'] = $infos[0]['id'];
-                            header('location:index.php');
+                            header('location:profil.php');
                         }
                         else
                         {
@@ -114,7 +113,7 @@
             }
             else
             {
-                $message = 'Vous êtes déjà connecté(e) '.$_SESSION['login']."Vous devez choisir ce que vous voulez faire, soit
+                $message = 'Vous êtes déjà connecté(e) '.$_SESSION['login'].". <br/>Vous devez choisir ce que vous voulez faire, soit
                 créer un événement soit consulter le planning.";
             }
         ?>
