@@ -1,9 +1,14 @@
 
 <?php
     session_start();
-    if(isset($_GET['deconnexion']))
+    if (isset($_GET['deconnexion']))
     {
-        session_destroy();
+
+        unset($_SESSION['login']);
+        //au bout de 2 secondes redirection vers la page d'accueil
+        header("Refresh: 4; url=index.php");
+
+        echo "<p>Vous avez été déconnecté</p><br><p>Redirection vers la page d'accueil...</p>";
     }
     $message = "";
 ?>
@@ -137,7 +142,6 @@
             {
                 $message = 'Il faut être inscrit et connecté pour avoir accès à cette page en totalité.';
             }
-            mysqli_close($bdd);
         ?>
         <p class="message">
             <?php echo $message; ?>
