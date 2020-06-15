@@ -18,8 +18,10 @@ session_start();
 // si l'utilisateur est connecté le header est personnalisé
 
     if(isset($_SESSION['login'])){
-      echo '<div class="sidenav"> <a href="index.php">Accueil</a></li>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="profil.php"> votre profil </a>'.'<a href="planning.php">
-          Retour au planning </a></div>' ;
+      echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
+      '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
+      '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
+        <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></div>' ;
     }
     else { ?>
       <ul>
@@ -42,6 +44,7 @@ session_start();
         $resultat = $bdd->query($requete);
       }
       
+
     		while ($ligne = $resultat->fetch_assoc()) {
             echo '<h1>'.$ligne['login'].'</h1>';
             echo '<h3>'. $ligne['titre']. '</h3>';
