@@ -103,6 +103,7 @@
                             session_start();
                             $_SESSION['login'] = $infos[0]['login'];
                             $_SESSION['id'] = $infos[0]['id'];
+                            $_SESSION['password'] = $infos[0]['password'];
                             header('location:profil.php');
                         }
                         else

@@ -55,7 +55,6 @@
 
                 if(isset($_POST['modifier']) && !empty($_POST['login']) && !empty($_POST['mdp_actuel']))
                 {
-                  echo '1er condition';
                     if (password_verify($_POST['mdp_actuel'], $_SESSION['password']))
                     {
                         $login = $_POST['login'];

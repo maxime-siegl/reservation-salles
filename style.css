@@ -129,6 +129,8 @@ td {
 
 .evenement {
   background-color: #0D5C63;
+  width: auto;
+  height: auto;
 }
 
 .evenement:hover {
