@@ -18,8 +18,10 @@ session_start();
 // si l'utilisateur est connecté le header est personnalisé
 
     if(isset($_SESSION['login'])){
-      echo '<div class="sidenav"> <a href="index.php">Accueil</a></li>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="profil.php"> votre profil </a>'.'<a href="planning.php">
-          Retour au planning </a></div>' ;
+      echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
+      '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
+      '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
+        <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></div>' ;
     }
     else { ?>
       <ul>
@@ -33,18 +35,18 @@ session_start();
       <div class="content_reservation">
 
       <?php
-      // on se connecte à notre base
-      $bdd = mysqli_connect("127.0.0.1", "root", "", "reservationsalles");
+      if(isset($_GET['evenement']))
+      {
+        $id_event = $_GET['evenement'];
+        // on se connecte à notre base
+        $bdd = mysqli_connect("127.0.0.1", "root", "", "reservationsalles");
+        $requete = "SELECT utilisateurs.login, titre, description, debut, fin FROM reservations INNER JOIN utilisateurs ON utilisateurs.id = reservations.id_utilisateur WHERE reservations.id = '$id_event'";
+        $resultat = $bdd->query($requete);
+      }
 
-      $requete = 'SELECT * FROM reservations';
-      $resultat = $bdd->query($requete);
-
-$id=$_GET['id'];
-
-      		while ($ligne = $resultat->fetch_assoc()) {
-
-echo '<h1>'. $ligne['titre']. '</h1>';
-
+    		while ($ligne = $resultat->fetch_assoc()) {
+            echo '<h1>'.$ligne['login'].'</h1>';
+            echo '<h3>'. $ligne['titre']. '</h3>';
       			echo '<p>'.$ligne['description'].'</p>heure de début<p>' .$ligne['debut']. '</p>heure de fin<p>' .$ligne['fin'].'</p>';
       		}
       		$bdd->close();
