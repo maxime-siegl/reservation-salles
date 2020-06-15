@@ -1,6 +1,7 @@
 <?php
-  session_start();
-  if (isset($_GET['deconnexion'])) {
+
+session_start();
+if (isset($_GET['deconnexion'])) {
 
     unset($_SESSION['login']);
     //au bout de 2 secondes redirection vers la page d'accueil
@@ -15,10 +16,11 @@
   <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Scada&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
     <title>planning</title>
   </head>
   <body>
+
     <header>
       <?php
 
@@ -127,7 +129,10 @@ $place = null;
 // il faut justifier qu'il y a une valeur dans les endroits où la correspondance est nulle pour ne pas afficher trop de créneaux.
 if ($place == null)
 {
-echo '<td>'. "<a href=reservation-form.php> réserver le créneau </a>" . '</td>'; // affichage jours
+?>
+<td><a href="reservation-form.php?heure_start=<?php echo $heure;?>&date_start=<?php echo $jour;?>">réserver le créneau</a></td>
+
+<?php
 }
 $jour++;
 }

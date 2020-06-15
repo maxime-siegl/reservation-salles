@@ -57,6 +57,7 @@
                         <?php
                                 if (isset($_GET['date_start']))
                                 {
+                                    $date_defaut="";
                                     if ($_GET['date_start'] == 1)
                                     {
                                         $date_defaut = date('Y-m-d', strtotime('monday this week'));
@@ -77,10 +78,11 @@
                                     {
                                         $date_defaut = date('Y-m-d', strtotime('friday this week'));
                                     }
-                                }
                             ?>
                         <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $date_defaut; ?>" required>
-
+                            <?php
+                                }
+                            ?>
                         <select name="heure_debut" id="heure_debut" required>
                             <?php
                                 if (isset($_GET['heure_start']))
@@ -131,8 +133,35 @@
                           <label for="fin">Date de fin de l'évènement</label>
                         </div>
                         <div class="style_input">
+                        <?php
+                                if (isset($_GET['date_start']))
+                                {
+                                    $date_defaut="";
+                                    if ($_GET['date_start'] == 1)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('monday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 2)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('tuesday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 3)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('wednesday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 4)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('thursday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 5)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('friday this week'));
+                                    }
+                        ?>
                         <input type="date" name="fin" id="fin" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $date_defaut; ?>" required>
-
+                        <?php
+                                }
+                        ?>
                         </div>
                         <select name="heure_fin" id="heure_fin" required>
                             <?php
