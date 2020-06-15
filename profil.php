@@ -22,7 +22,7 @@
   // si l'utilisateur est connecté le header est personnalisé
 
     if(isset($_SESSION['login'])){
-      echo '<div class="sidenav"> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="planning.php"> accéder au planning </a></li>'.'<li><a href="profil.php?deconnexion">
+      echo '<div class="sidenav"> <a href="index.php">Accueil</a>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="planning.php"> accéder au planning </a>'.'<a href="profil.php?deconnexion">
           Déconnexion </a></div>' ;
     }
     else { ?>
@@ -41,6 +41,7 @@
 
 <div class="content_profil">
 
+<h1>Modifiez vos informations</h1>
         <?php
             if (isset($_SESSION['login']))
             {
@@ -49,19 +50,41 @@
                 $info_query = mysqli_query($bdd, $infolog);
                 $info_utilisateur = mysqli_fetch_all($info_query, MYSQLI_ASSOC);
         ?>
+        <div class="container">
+
                 <form action="profil.php" method="POST">
                     <p>
+                      <div class="style_label">
                         <label for="login">Login</label>
+                      </div>
+                      <div class="style_input">
                         <input type="text" name="login" id="login" value="<?php echo $info_utilisateur[0]['login']; ?>" required>
+                      </div>
+                      <div class="style_label">
                         <label for="mdp_actuel">Mot de passe Actuel</label>
+                      </div>
+                      <div class="style_input">
                         <input type="password" name="mdp_actuel" required>
+                      </div>
+                      <div class="style_label">
                         <label for="new_mdp">Mot de passe Actuel</label>
+
+                      </div>
+                      <div class="style_input">
                         <input type="password" name="new_mdp">
+                      </div>
+                      <div class="style_label">
                         <label for="conf_new_mdp">Mot de passe Actuel</label>
+                      </div>
+                      <div class="style_input">
                         <input type="password" name="conf_new_mdp">
+
+                      </div>
                         <button type="submit" name="modifier" class="bouton">Modifier</button>
                     </p>
                 </form>
+              </div>
+
         <?php
                 if(isset($_POST['modifier']) && !empty($_POST['login']) && !empty($_POST['mdp_actuel']))
                 {

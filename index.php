@@ -24,7 +24,7 @@
       <h2>Salle communale de la ville</h2>
     </div>
 
-    <div class="row">
+    <div class="row2">
       <div class="column">
 
 <a href="inscription.php">S'inscrire</a>
@@ -36,20 +36,11 @@
       </div>
     </div>
 
-    <div class="footer">
-      <p>Footer</p>
-    </div>
-
     <?php
   } ?>
 
   </header>
-
   <main>
-<div class="">
-
-</div>
-
   </main>
 
 </div>

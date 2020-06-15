@@ -16,8 +16,8 @@
 <body>
 <?php
       if(isset($_SESSION['login'])){
-        echo '<ul><li> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="planning.php"> accéder au planning </a></li>'.'<li><a href="profil.php?deconnexion">
-            Déconnexion </a></li></ul>' ;
+        echo '<div class="sidenav"> <a href="index.php">Accueil</a>'.'<a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a>'.'<a href="planning.php"> accéder au planning </a>'.'<a href="profil.php?deconnexion">
+            Déconnexion </div>' ;
       }
       else { ?>
         <div class="sidenav">
