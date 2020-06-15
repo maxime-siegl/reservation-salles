@@ -44,43 +44,125 @@
                         <label for="description">Description</label>
                         <textarea name="description" id="description" cols="30" rows="10" placeholder="Décrivez un peu votre évènement..." required></textarea>
                         <label for="debut">Date du début de l'évènement:</label>
-                        <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" required>
+                        <?php
+                                if (isset($_GET['date_start']))
+                                {
+                                    if ($_GET['date_start'] == 1)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('monday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 2)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('tuesday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 3)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('wednesday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 4)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('thursday this week'));
+                                    }
+                                    else if ($_GET['date_start'] == 5)
+                                    {
+                                        $date_defaut = date('Y-m-d', strtotime('friday this week'));
+                                    }
+                                }
+                            ?>
+                        <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $date_defaut; ?>" required>
+
                         <select name="heure_debut" id="heure_debut" required>
                             <?php
-                                for($horaire_debut = 8; $horaire_debut <=19; $horaire_debut++)
+                                if (isset($_GET['heure_start']))
                                 {
-                                    if ($horaire_debut < 10)
+                                    for($horaire_debut = 8; $horaire_debut <=19; $horaire_debut++)
                                     {
+                                        if ($horaire_debut < 10)
+                                        {
                             ?>
-                                        <option value="<?php echo '0'.$horaire_debut.':00'; ?>"><?php echo $horaire_debut.'h' ?></option>
+                                            <option value="<?php echo '0'.$horaire_debut.':00';?>"
+                                                <?php if ($horaire_debut == $_GET['heure_start']) {echo "selected";}?>> <!--Afficher les valeurs générées par la boucle/ Si les heures = alors selected recup cette valeur et la met par defaut dans le form!-->
+                                                <?php echo '0'.$horaire_debut.'h';?>
+                                            </option>
                             <?php
+                                        }
+                                        else
+                                        {
+                            ?>
+                                            <option value="<?php echo $horaire_debut.':00';?>"
+                                                <?php if ($horaire_debut == $_GET['heure_start']) {echo "selected";}?>>
+                                                <?php echo $horaire_debut.'h'; ?>
+                                            </option>
+                            <?php
+                                        }
                                     }
-                                    else
+                                }
+                                else
+                                {
+                                    for($horaire_debut = 8; $horaire_debut <=19; $horaire_debut++)
                                     {
+                                        if ($horaire_debut < 10)
+                                        {
                             ?>
-                                        <option value="<?php echo $horaire_debut.':00'; ?>"><?php echo $horaire_debut.'h'; ?></option>
+                                            <option value="<?php echo '0'.$horaire_debut.':00'; ?>"><?php echo $horaire_debut.'h' ?></option>
                             <?php
+                                        }
+                                        else
+                                        {
+                            ?>
+                                            <option value="<?php echo $horaire_debut.':00'; ?>"><?php echo $horaire_debut.'h'; ?></option>
+                            <?php
+                                        }
                                     }
                                 }
                             ?>
                         </select>
                         <label for="fin">Date de fin de l'évènement</label>
-                        <input type="date" name="fin" id="fin" min="<?php echo date('Y-m-d'); ?>" required>
+                        <input type="date" name="fin" id="fin" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $date_defaut; ?>" required>
                         <select name="heure_fin" id="heure_fin" required>
                             <?php
-                                for($horaire_fin = 9; $horaire_fin <=20; $horaire_fin++)
+                                if (isset($_GET['heure_start']))
                                 {
-                                    if ($horaire_fin < 10)
+                                    for($horaire_fin = 9; $horaire_fin <=20; $horaire_fin++)
                                     {
+                                        if ($horaire_fin < 10)
+                                        {
                             ?>
-                                        <option value="<?php echo '0'.$horaire_fin.':00'; ?>"><?php echo '0'.$horaire_fin.'h'; ?></option>
+                                            <option value="<?php echo '0'.$horaire_fin.':00';?>" <?php if ($horaire_fin == $_GET['heure_start']+1) {echo "selected";}?>>
+                                                <?php echo '0'.$horaire_fin.'h'; ?>
+                                            </option>
                             <?php
+                                        }
+                                        else
+                                        {
+                            ?>
+                                            <option value="<?php echo $horaire_fin.':00';?>" <?php if ($horaire_fin == $_GET['heure_start']+1) {echo "selected";}?>>
+                                                <?php echo $horaire_fin.'h'; ?>
+                                            </option>
+                            <?php
+                                        }
                                     }
-                                    else
+                                }
+                                else
+                                {
+                                    for($horaire_fin = 9; $horaire_fin <=20; $horaire_fin++)
                                     {
+                                        if ($horaire_fin < 10)
+                                        {
                             ?>
-                                        <option value="<?php echo $horaire_fin.':00'; ?>"><?php echo $horaire_fin.'h'; ?></option>
+                                            <option value="<?php echo '0'.$horaire_fin.':00'; ?>">
+                                                <?php echo '0'.$horaire_fin.'h'; ?>
+                                            </option>
                             <?php
+                                        }
+                                        else
+                                        {
+                            ?>
+                                            <option value="<?php echo $horaire_fin.':00'; ?>">
+                                                <?php echo $horaire_fin.'h'; ?>
+                                            </option>
+                            <?php
+                                        }
                                     }
                                 }
                             ?>
