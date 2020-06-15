@@ -5,7 +5,7 @@ if (isset($_GET['deconnexion']))
 
     unset($_SESSION['login']);
     //au bout de 2 secondes redirection vers la page d'accueil
-    header("Refresh: 2; url=index.php");
+    header("Refresh: 1; url=index.php");
 
     echo "<p>Vous avez été déconnecté</p><br><p>Redirection vers la page d'accueil...</p>";
 }
@@ -26,29 +26,27 @@ if (isset($_GET['deconnexion']))
 // si l'utilisateur est connecté le header est personnalisé
 if (isset($_SESSION['login']))
 {
-  echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
+  echo '<section class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
   '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
-  '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
-    <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></div>' ;
+  '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="planning.php?deconnexion">
+    <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></section>' ;
 }
 else
 { ?>
-        <div class="sidenav">
+        <section class="sidenav">
         <a href="index.php">accueil</a>
         <a href="inscription.php">inscription</a>
-      </div>
+      </section>
       <?php
 } ?>
 
     </header>
 
 <main>
-<div class="content_planning">
+<section class="content_planning">
 
 <h1><center>Planning de la semaine</center></h1>
 
-<p>Cliquez sur <i> réserver un créenau </i> pour créer un événement</p>
-<p>Vous pouvez aussi consulter les événements déjà crée en cliquant dessus. </p>
 
 <?php
 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
@@ -61,7 +59,7 @@ $heure = 8;
 
 while ($heure < 20)
 {
-    echo '<tr><td>' . $heure . '</td>';
+    echo '<tr><td class="heure">' . $heure . '</td>';
 
     $jour = 1;
 
@@ -121,7 +119,8 @@ while ($heure < 20)
         if ($place == null)
         {
 ?>
-<td><a href="reservation-form.php?heure_start=<?php echo $heure; ?>&date_start=<?php echo $jour; ?>">réserver le créneau</a></td>
+<td class="evenement">
+  <a href="reservation-form.php?heure_start=<?php echo $heure; ?>&date_start=<?php echo $jour; ?>" class="">réserver le créneau</a></td>
 
 <?php
         }
@@ -132,7 +131,7 @@ while ($heure < 20)
 }
 echo '</table>';
 ?>
-</div>
+</section>
 
 </main>
 </body>

@@ -1,9 +1,15 @@
 <?php
     session_start();
-    if (isset($_POST['deconnexion']))
-    {
-        session_destroy();
+    if (isset($_GET['deconnexion'])) {
+
+        unset($_SESSION['login']);
+        header("Refresh: 1; url=index.php");
+
+        echo "<p>Vous avez été déconnecté</p><br><p>Redirection vers la page d'accueil...</p>";
     }
+
+  $message = "";
+?>
     $message = "";
 ?>
 <!DOCTYPE html>
@@ -12,66 +18,69 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Inscription</title>
+    <link href="https://fonts.googleapis.com/css2?family=Scada&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <?php
       if(isset($_SESSION['login'])){
-        echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
+        echo '<section class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
         '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
-        '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
-          <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></div>' ;
+        '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="inscription.php?deconnexion">
+          <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></section>' ;
       }
       else { ?>
-        <div class="sidenav">
+        <section class="sidenav">
         <?php  }?>
 
 
         <a href="index.php">accueil</a>
         <a href="connexion.php">connexion</a>
-    </div>
+    </section>
     <main>
-      <div class="content-inscription">
+      <section class="content-inscription">
+        <h1>Inscrivez-vous</h1>
 
         <?php
             if(isset($_SESSION['login']) == false)
             {
                 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
         ?>
-        <div class="container">
+        <section class="container">
 
                 <form action="inscription.php" method="POST">
-                  <div class="row">
+                  <section class="row">
 
                     <p>
-                      <div class="style_label">
+                      <section class="style_label">
                         <label for="login">Login</label>
-                      </div>
-                      <div class="style_input">
+                      </section>
+                      <section class="style_input">
                         <input type="text" name="login" id="login" required>
 
-                      </div>
-                      <div class="style_label">
+                      </section>
+                      <section class="style_label">
                         <label for="password">Mot de Passe</label>
 
-                      </div>
-                      <div class="style_input">
+                      </section>
+                      <section class="style_input">
                         <input type="password" name="password" id="password" required>
 
-                      </div>
-                      <div class="style_label">
+                      </section>
+                      <section class="style_label">
                         <label for="confirmation_pw">Confirmation du mot de passe</label>
 
-                      </div>
-                      <div class="style_input">
+                      </section>
+                      <section class="style_input">
                         <input type="password" name="confirmation_pw" id="confpw" required>
 
-                      </div>
+                      </section>
 
                         <button type="submit" name="inscription">S'inscrire</button>
                     </p>
-                  </div>
+                  </section>
                 </form>
-              </div>
+              </section>
 
         <?php
                 if(isset($_POST['inscription']))
@@ -106,13 +115,14 @@
             }
             else
             {
-                $message = 'Vous êtes déjà connecté, pas besoin de vous inscrire de nouveau. Allez plutôt sur notre planning pour y réserver votre créneau avant qu\'il n\'y est plus de place!!';
+                $message = '<center>Vous êtes déjà connecté, pas besoin de vous inscrire de nouveau. Allez plutôt sur notre planning pour y réserver votre créneau avant qu\'il n\'y est plus de place!</center>';
             }
         ?>
         <p class="message">
             <?php echo $message;?>
         </p>
+      </section>
+
     </main>
-</div>
 </body>
 </html>

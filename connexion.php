@@ -1,16 +1,22 @@
 <?php
     session_start();
-    if(isset($_POST['deconnexion']))
-    {
-        session_destroy();
-        header('index.php');
+    if (isset($_GET['deconnexion'])) {
+
+        unset($_SESSION['login']);
+        //au bout de 2 secondes redirection vers la page d'accueil
+        header("Refresh: 1; url=index.php");
+
+        echo "<p>Vous avez été déconnecté</p><br><p>Redirection vers la page d'accueil...</p>";
     }
+
+  $message = "";
+?><?php
     $message = "";
 
     if(isset($_SESSION['login'])){
       echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
       '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
-      '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
+      '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="connexion.php?deconnexion">
         <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></div>' ;
     }
     else { ?>
@@ -36,6 +42,7 @@
 <div class="content-connexion">
 
     <main>
+      <h1>Connectez-vous</h1>
         <?php
             if (isset($_SESSION['login']) == false)
             {
@@ -76,9 +83,6 @@
                   </div>
 
                 </form>
-
-                <img src="img/connexion.jpg" alt="">
-              </div>
 
         <?php
                 if(isset($_POST['connexion']))

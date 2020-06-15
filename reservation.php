@@ -1,5 +1,16 @@
 <?php
 session_start();
+if (isset($_GET['deconnexion'])) {
+
+    unset($_SESSION['login']);
+    //au bout de 2 secondes redirection vers la page d'accueil
+    header("Refresh: 1; url=index.php");
+
+    echo "<p>Vous avez été déconnecté</p><br><p>Redirection vers la page d'accueil...</p>";
+}
+
+$message = "";
+?>
  ?>
 
 <!DOCTYPE html>
@@ -18,10 +29,10 @@ session_start();
 // si l'utilisateur est connecté le header est personnalisé
 
     if(isset($_SESSION['login'])){
-      echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
+      echo '<section class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
       '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
       '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
-        <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></div>' ;
+        <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></section>' ;
     }
     else { ?>
       <ul>
@@ -32,7 +43,7 @@ session_start();
 
   </header>
     <main>
-      <div class="content_reservation">
+      <section class="content_reservation">
 
       <?php
       if(isset($_GET['evenement']))
@@ -53,7 +64,7 @@ session_start();
           //$id_resa = $info_reservation[0]['id'];
 
       		?>
-        </div>
+        </section>
 
     </main>
     <footer></footer>

@@ -1,11 +1,18 @@
 <?php
     session_start();
-    if(isset($_POST['deconnexion']))
-    {
-        session_destroy();
+    if (isset($_GET['deconnexion'])) {
+
+        unset($_SESSION['login']);
+        //au bout de 2 secondes redirection vers la page d'accueil
+        header("Refresh: 1; url=index.php");
+
+        echo "<p>Vous avez été déconnecté</p><br><p>Redirection vers la page d'accueil...</p>";
     }
-    $message="";
+
+  $message = "";
 ?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,22 +24,22 @@
 </head>
 <body><?php
   if(isset($_SESSION['login'])){
-    echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
+    echo '<section class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
     '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
     '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
-      <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></div>' ;
+      <center><img src="https://img.icons8.com/fluent/48/000000/shutdown.png"/></center> </a></section>' ;
   }
   else { ?>
-    <div class="sidenav">
+    <section class="sidenav">
 
 
     <a href="index.php">accueil</a>
     <a href="inscription.php">inscription</a>
-</div>
+</section>
   <?php  }?>
 
     <main>
-      <div class="content_reservation_form">
+      <section class="content_reservation_form">
 
         <h1>Je réserve un créneau</h1>
 
@@ -41,18 +48,18 @@
             {
                 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
         ?>
-        <div class="container">
+        <section class="container">
 
                 <form action="reservation-form.php" method="POST">
                     <p>
-                      <div class="style_label">
+                      <section class="style_label">
                         <label for="titre">Titre</label>
 
-                      </div>
-                      <div class="style_input">
+                      </section>
+                      <section class="style_input">
                         <input type="text" name="titre" id="titre" required>
-                      </div>
-                      <div class="style_label">
+                      </section>
+                      <section class="style_label">
                         <label for="description">Description</label>
                         <textarea name="description" id="description" cols="30" rows="10" placeholder="Décrivez un peu votre évènement..." required></textarea>
                         <label for="debut">Date du début de l'évènement:</label>
@@ -137,10 +144,10 @@
                                 }
                             ?>
                         </select>
-                        <div class="style_label">
+                        <section class="style_label">
                           <label for="fin">Date de fin de l'évènement</label>
-                        </div>
-                        <div class="style_input">
+                        </section>
+                        <section class="style_input">
                         <?php
                                 if (isset($_GET['date_start']))
                                 {
@@ -176,7 +183,7 @@
                             <?php
                                 }
                         ?>
-                        </div>
+                      </section>
                         <select name="heure_fin" id="heure_fin" required>
                             <?php
                                 if (isset($_GET['heure_start']))
@@ -225,10 +232,10 @@
                                 }
                             ?>
                         </select>
-                        <button type="submit" name="creer" class="bouton">Créer</button>
+                    <br />    <button type="submit" name="creer" class="bouton">Créer</button>
                 </p>
             </form>
-          </div>
+          </section>
 
 
         <?php
@@ -273,6 +280,8 @@
                                     {
                                         $ajout_event = "INSERT INTO reservations VALUES (null, '$titre', '$description', '$debut', '$fin', '$utilisateur')";
                                         $ajout_query = mysqli_query($bdd, $ajout_event);
+                                        echo "événement ajouté avec succès";
+                                      
                                     }
                                     else
                                     {
@@ -302,8 +311,8 @@
                 mysqli_close($bdd);
             }
         ?>
-      </div>
-
+      </section>
+</section>
     </main>
     <footer></footer>
 </body>

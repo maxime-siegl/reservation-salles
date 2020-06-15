@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-    <div class="index">
+    <section class="index">
 
     <?php
   // Si s'utilisateur est loggé le header est personnalisé
@@ -19,31 +19,34 @@
   }
   else
   { ?>
-
-    <div class="header">
-      <h2>Salle communale de la ville</h2>
-    </div>
-
-    <div class="row2">
-      <div class="column">
-
-<a href="inscription.php">S'inscrire</a>
-      </div>
-      <div class="column"> Pour accéder au planning de la salle il faut
-       vous connecter ou vous inscrire si vous n'avez pas de compte</div>
-      <div class="column">
-<a href="connexion.php">Se connecter</a>
-      </div>
-    </div>
-
     <?php
   } ?>
 
   </header>
+
+
   <main>
+    <section class="main">
+
+    <section class="header">
+      <h2>Salle communale de la ville de Springfield</h2>
+      <p>Associations, particuliers, réservez la salle pour toutes vos activités</p>
+    </section>
+
+    <section class="row2">
+      <section class="column">
+
+<a href="inscription.php">S'inscrire</a>
+</section>
+      <section class="column">
+<a href="connexion.php">Se connecter</a>
+</section>
+</section>
+</section>
+</section>
+
   </main>
 
-</div>
 
 </body>
 </html>
