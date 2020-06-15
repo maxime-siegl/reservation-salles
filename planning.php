@@ -75,7 +75,6 @@ while( $jour< 6 )
         $jour_heure_event = $valeur['debut'];
         //formatage de l'heure de l'événement
         $explode_event = explode(" ", $jour_heure_event); //array jour heure du début
-
         $event_jour = $explode_event[0]; //date de l'event
         //cette variable formatte le jour
 
@@ -99,12 +98,22 @@ $nom=$valeur['titre'];
 //echo '----';
 
 //s'il y a une correspondance entre un endroit où est l'événement et une case existante
+
+
 if($place == $where_resa)
   {
+    $info_resa = "SELECT * FROM reservations";
+    $info_query = mysqli_query($bdd, $info_resa);
+    $info_reservation = mysqli_fetch_all($info_query, MYSQLI_ASSOC);
+
+    $id_resa = $info_reservation[0]['id'];
+
   ?>
-<td ><?php //affichage du nom de l'événement
- echo '<p>'. $nom. '</p>'?></td>
-<?php
+
+ <td><a href="reservation.php?evenement= <?php echo $id_resa;?>"> <?php echo $nom; ?> </a></td>
+
+
+ <?php
 // break permet d'arrêter la boucle dès qu'une valeur a été trouvée
   break;
   } else  {
