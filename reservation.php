@@ -37,14 +37,16 @@ session_start();
       $requete = 'SELECT * FROM reservations';
       $resultat = $bdd->query($requete);
 
+$id=$_GET['id'];
+
       		while ($ligne = $resultat->fetch_assoc()) {
 
 echo '<h1>'. $ligne['titre']. '</h1>';
 
-      			echo '<p> '.$ligne['description'].'</p>heure de début<p>' .$ligne['debut']. '</p>heure de fin<p>' .$ligne['fin'].'</p>';
+      			echo '<p>'.$ligne['description'].'</p>heure de début<p>' .$ligne['debut']. '</p>heure de fin<p>' .$ligne['fin'].'</p>';
       		}
       		$bdd->close();
-          //$i  d_resa = $info_reservation[0]['id'];
+          //$id_resa = $info_reservation[0]['id'];
 
       		?>
 
