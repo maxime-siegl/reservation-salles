@@ -102,7 +102,9 @@ $nom=$valeur['titre'];
 
 if($place == $where_resa)
   {
-    $info_resa = "SELECT * FROM reservations";
+
+    //modifier requête
+    $info_resa = "SELECT * FROM reservations WHERE /////// ";
     $info_query = mysqli_query($bdd, $info_resa);
     $info_reservation = mysqli_fetch_all($info_query, MYSQLI_ASSOC);
 

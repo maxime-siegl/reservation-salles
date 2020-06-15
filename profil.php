@@ -11,6 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Scada&display=swap" rel="stylesheet">
+
     <title>Votre Profil</title>
 </head>
 <body>
@@ -20,17 +22,25 @@
   // si l'utilisateur est connecté le header est personnalisé
 
     if(isset($_SESSION['login'])){
-      echo '<ul><li> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="planning.php"> accéder au planning </a></li>'.'<li><a href="profil.php?deconnexion">
-          Déconnexion </a></li></ul>' ;
+      echo '<div class="sidenav"> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="planning.php"> accéder au planning </a></li>'.'<li><a href="profil.php?deconnexion">
+          Déconnexion </a></div>' ;
     }
     else { ?>
-      <ul>
-      <li><a href="index.php">accueil</a></li>
-      <li><a href="inscription.php">inscription</a></li>
-      </ul>
+      <div class="sidenav">
+        <a href="index.php">accueil</a>
+        <a href="inscription.php">inscription</a>
+      </div>
+
+
     <?php  }?>
 
-  </header>    <main>
+  </header>
+
+    <main>
+
+
+<div class="content_profil">
+
         <?php
             if (isset($_SESSION['login']))
             {
@@ -105,6 +115,8 @@
         <p class="message">
             <?php echo $message; ?>
         </p>
+      </div>
+
     </main>
     <footer></footer>
 </body>

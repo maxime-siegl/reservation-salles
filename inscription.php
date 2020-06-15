@@ -10,27 +10,67 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <title>Inscription</title>
 </head>
 <body>
-    <header></header>
+<?php
+      if(isset($_SESSION['login'])){
+        echo '<ul><li> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="planning.php"> accéder au planning </a></li>'.'<li><a href="profil.php?deconnexion">
+            Déconnexion </a></li></ul>' ;
+      }
+      else { ?>
+        <div class="sidenav">
+        <?php  }?>
+
+
+        <a href="index.php">accueil</a>
+        <a href="inscription.php">inscription</a>
+    </div>
     <main>
+      <div class="content-inscription">
+
         <?php
             if(isset($_SESSION['login']) == false)
             {
                 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
         ?>
+        <div class="container">
+
                 <form action="inscription.php" method="POST">
+                  <div class="row">
+
                     <p>
+                      <div class="style_label">
                         <label for="login">Login</label>
+                      </div>
+                      <div class="style_input">
                         <input type="text" name="login" id="login" required>
+
+                      </div>
+                      <div class="style_label">
                         <label for="password">Mot de Passe</label>
+
+                      </div>
+                      <div class="style_input">
                         <input type="password" name="password" id="password" required>
+
+                      </div>
+                      <div class="style_label">
                         <label for="confirmation_pw">Confirmation du mot de passe</label>
+
+                      </div>
+                      <div class="style_input">
                         <input type="password" name="confirmation_pw" id="confpw" required>
+
+                      </div>
+
                         <button type="submit" name="inscription">S'inscrire</button>
                     </p>
+                  </div>
                 </form>
+              </div>
+
         <?php
                 if(isset($_POST['inscription']))
                 {
@@ -71,6 +111,6 @@
             <?php echo $message;?>
         </p>
     </main>
-    <footer></footer>
+</div>
 </body>
 </html>

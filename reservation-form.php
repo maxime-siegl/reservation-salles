@@ -11,10 +11,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Réservation d'un créneau</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Scada&display=swap" rel="stylesheet">
+
 </head>
-<body>
-    <header></header>
+<body><?php
+  if(isset($_SESSION['login'])){
+    echo '<div class="sidenav"> <a href="index.php">Accueil</a></li>'.'<li><a href="profil.php">   Vous êtes connecté(e)     '.$_SESSION['login'].'</a></li>'.'<li><a href="planning.php"> accéder au planning </a></li>'.'<li><a href="profil.php?deconnexion">
+        Déconnexion </a></div>' ;
+  }
+  else { ?>
+    <div class="sidenav">
+
+
+    <a href="index.php">accueil</a>
+    <a href="inscription.php">inscription</a>
+</div>
+  <?php  }?>
+
     <main>
+      <div class="content_reservation_form">
+
         <?php
             if (isset($_SESSION['login']))
             {
@@ -35,8 +52,8 @@
                                     if ($horaire_debut < 10)
                                     {
                             ?>
-                                        <option value="<?php echo '0'.$horaire_debut.':00'; ?>"><?php echo $horaire_debut.'h' ?></option>       
-                            <?php            
+                                        <option value="<?php echo '0'.$horaire_debut.':00'; ?>"><?php echo $horaire_debut.'h' ?></option>
+                            <?php
                                     }
                                     else
                                     {
@@ -45,7 +62,7 @@
                             <?php
                                     }
                                 }
-                            ?>  
+                            ?>
                         </select>
                         <label for="fin">Date de fin de l'évènement</label>
                         <input type="date" name="fin" id="fin" min="<?php echo date('Y-m-d'); ?>" required>
@@ -55,9 +72,9 @@
                                 {
                                     if ($horaire_fin < 10)
                                     {
-                            ?>      
+                            ?>
                                         <option value="<?php echo '0'.$horaire_fin.':00'; ?>"><?php echo '0'.$horaire_fin.'h'; ?></option>
-                            <?php        
+                            <?php
                                     }
                                     else
                                     {
@@ -81,7 +98,7 @@
                     $fin = $_POST['fin']. " " .$_POST['heure_fin'];
                     $utilisateur = $_SESSION['id'];
 
-                    
+
                     $jour_debut_explode = explode("-", $_POST['debut']);
                     $jour_debut_week_num = date("N", mktime(0, 0, 0, $jour_debut_explode[1], $jour_debut_explode[2], $jour_debut_explode[0])); //jour du debut de l'event semaine en numerique
 
@@ -96,7 +113,7 @@
                         $heure_debut_only = date("G", mktime($heure_debut_explode[0], $heure_debut_explode[1], 0, 0, 0, 0)); // recup uniquement le nombre heure
                         $heure_fin_explode = explode(":", $_POST['heure_fin']); // exploser heure fin
                         $heure_fin_only = date("G", mktime($heure_fin_explode[0], $heure_fin_explode[1], 0, 0, 0, 0)); // recup uniquement le nombre heure
-                        
+
                         $jour_resa = $_POST['debut'].' '.$heure_debut_only;
 
 
@@ -109,7 +126,7 @@
                                     $event = "SELECT * FROM reservations WHERE debut = '$debut' "; // recup info si date correspond a quelques cose déjà créé
                                     $event_query = mysqli_query($bdd, $event);
                                     $info_event = mysqli_fetch_all($event_query, MYSQLI_ASSOC); //info event deja créé
-                                    
+
                                     if (empty($info_event)) // créneau déjà occupé
                                     {
                                         $ajout_event = "INSERT INTO reservations VALUES (null, '$titre', '$description', '$debut', '$fin', '$utilisateur')";
@@ -143,6 +160,8 @@
                 mysqli_close($bdd);
             }
         ?>
+      </div>
+
     </main>
     <footer></footer>
 </body>
