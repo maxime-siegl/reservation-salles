@@ -33,18 +33,18 @@ session_start();
       <div class="content_reservation">
 
       <?php
-      // on se connecte à notre base
-      $bdd = mysqli_connect("127.0.0.1", "root", "", "reservationsalles");
-
-      $requete = 'SELECT * FROM reservations';
-      $resultat = $bdd->query($requete);
-
-$id=$_GET['id'];
-
-      		while ($ligne = $resultat->fetch_assoc()) {
-
-echo '<h1>'. $ligne['titre']. '</h1>';
-
+      if(isset($_GET['evenement']))
+      {
+        $id_event = $_GET['evenement'];
+        // on se connecte à notre base
+        $bdd = mysqli_connect("127.0.0.1", "root", "", "reservationsalles");
+        $requete = "SELECT utilisateurs.login, titre, description, debut, fin FROM reservations INNER JOIN utilisateurs ON utilisateurs.id = reservations.id_utilisateur WHERE reservations.id = '$id_event'";
+        $resultat = $bdd->query($requete);
+      }
+      
+    		while ($ligne = $resultat->fetch_assoc()) {
+            echo '<h1>'.$ligne['login'].'</h1>';
+            echo '<h3>'. $ligne['titre']. '</h3>';
       			echo '<p>'.$ligne['description'].'</p>heure de début<p>' .$ligne['debut']. '</p>heure de fin<p>' .$ligne['fin'].'</p>';
       		}
       		$bdd->close();

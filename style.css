@@ -190,10 +190,10 @@ border-radius: 10px;
 }
 
 /*form*/
-input[type=text], select, textarea {
+input[type=text], textarea {
   width: 80%;
-  /*padding: 12px;*/
-  border: 1px solid #ccc;
+  /*padding: 2%;*/
+  border: 1px solid #ccc; /*SELECT A PART !! SANS LE PADDING*/
   border-radius: 4px;
   resize: vertical;
   max-height: 20px;

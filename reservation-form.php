@@ -82,6 +82,12 @@
                         <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $date_defaut; ?>" required>
                             <?php
                                 }
+                                else
+                                {
+                            ?>
+                                    <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" required>
+                            <?php    
+                                }
                             ?>
                         <select name="heure_debut" id="heure_debut" required>
                             <?php
@@ -160,6 +166,12 @@
                         ?>
                         <input type="date" name="fin" id="fin" min="<?php echo date('Y-m-d'); ?>" value="<?php echo $date_defaut; ?>" required>
                         <?php
+                                }
+                                else
+                                {
+                            ?>
+                                    <input type="date" name="debut" id="debut" min="<?php echo date('Y-m-d'); ?>" required>
+                            <?php    
                                 }
                         ?>
                         </div>
