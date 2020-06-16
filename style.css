@@ -1,0 +1,302 @@
+/* Style général */
+* {
+  font-family: 'Scada', sans-serif;
+  max-width: 1024;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFA;
+}
+
+/*header */
+.sidenav {
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #0D5C63;
+  overflow-x: hidden;
+}
+
+.content-connexion {
+  margin: 12%;
+  padding-left: 25%;
+}
+
+.content-inscription {
+  margin-top: 1%;
+  margin-left: 12%;
+  padding-left: 25%;
+}
+
+.content_reservation_form {
+  margin-top: 1%;
+  margin-left: 12%;
+  padding-left: 15%;
+}
+
+
+
+.content_profil {
+  margin-top: 1%;
+  margin-left: 12%;
+  padding-left: 25%;
+}
+
+.content_planning {
+  margin: 1%;
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content_planning h1 {
+  padding: 0.5%;
+}
+
+.content_planning p {
+  text-align: center;
+}
+
+.content_reservation {
+  margin-top: 1%;
+  margin-left: 12%;
+  padding-left: 25%;
+
+}
+
+.content_reservation p {
+  color: white;
+  background-color: grey;
+  width: 20%;
+  padding: 1%;
+}
+
+.sidenav a {
+  color: white;
+  padding: 10%;
+  text-decoration: none;
+  display: block;
+}
+
+.sidenav a:hover {
+  background-color: #44A1A0;
+  color: black;
+}
+
+/* planning.php */
+table {
+  display: flex;
+  text-decoration: none;
+  margin: 0 auto;
+  margin-left: 15%;
+  padding-left: 2%;
+  -webkit-box-shadow: 10px 10px 1px -6px rgba(0, 0, 0, 0.36);
+  -moz-box-shadow: 10px 10px 1px -6px rgba(0, 0, 0, 0.36);
+  box-shadow: 10px 10px 1px -6px rgba(0, 0, 0, 0.36);
+}
+
+table p {
+  font-style: italic;
+  font-weight: bold;
+}
+
+table a {
+  text-decoration: none;
+  color: white;
+}
+
+table a:hover {
+  color: white;
+}
+
+td {
+  padding: 10px;
+  background-color: #44A1A0;
+  text-align: center;
+}
+
+.heure {
+  color: #44A1A0;
+  background-color: white;
+  padding: 10px;
+}
+
+.evenement {
+  background-color: #0D5C63;
+  width: auto;
+  height: auto;
+}
+
+.evenement:hover {
+  background-color: #44A1A0;
+}
+
+/* index.php*/
+.main {
+  background-image: url("https://images.pexels.com/photos/416320/pexels-photo-416320.jpeg?cs=srgb&dl=a-l-interieur-bureau-chaises-contemporain-416320.jpg&fm=jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+min-height: 100%;
+ min-width: 1024px;
+ width: 100%;
+ height: auto;
+ position: fixed;
+ top: 0;
+ left: 0;
+}
+
+.column {
+padding: 4%;
+height: auto;
+margin: 5%;
+}
+
+.column a {
+  text-decoration: none;
+  background-color: #44A1A0;
+  color: white;
+  padding: 10%;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.column a:hover {
+  background-color: #247B7B;
+}
+
+.header {
+  background-color: #247B7B;
+  padding: 2%;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  opacity: 0.8;
+}
+
+.row2 {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.column {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  flex-direction: row;
+  padding: 2%;
+  width: 100%;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.column a {
+  margin: 1%;
+}
+
+@media (max-width: 600px) {
+  .row2 {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+/* reservation.php */
+.reservation {
+  background-color: pink;
+  color: red;
+}
+
+/*form*/
+input[type=text], text, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  max-height: 20px;
+}
+
+input[type=text],  select {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  max-height: 20px;
+}
+
+input[type=password] {
+  width: 80%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=date] {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 5px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+button {
+  background-color: red;
+  color: white;
+  padding: 4%;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  float: right;
+  text-align: center;
+
+}
+
+button:hover {
+  background-color: blue;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  width: 60%;
+  -webkit-box-shadow: 10px 10px 1px -6px rgba(0, 0, 0, 0.36);
+  -moz-box-shadow: 10px 10px 1px -6px rgba(0, 0, 0, 0.36);
+  box-shadow: 10px 10px 1px -6px rgba(0, 0, 0, 0.36);
+}
+
+.style_label {
+  float: left;
+  width: 65%;
+  margin-top: 6px;
+}
+
+.style_input {
+  float: left;
+  width: 65%;
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 600px) {
+  .style_label, .style_input, button {
+    width: 100%;
+    margin-top: 0;
