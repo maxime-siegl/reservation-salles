@@ -1,4 +1,3 @@
-
 <?php
     session_start();
     if (isset($_GET['deconnexion']))
@@ -27,7 +26,8 @@
 
   // si l'utilisateur est connecté le header est personnalisé
 
-    if(isset($_SESSION['login'])){
+    if(isset($_SESSION['login']))
+    {
       echo '<div class="sidenav"> <a href="index.php"><center>Accueil</center></a>'.
       '<a href="profil.php">  <img src="https://img.icons8.com/officexs/30/000000/user-menu-female.png"/> Votre profil    '.$_SESSION['login'].'</a>'.
       '<a href="planning.php"><img src="https://img.icons8.com/offices/30/000000/planner.png"/> le planning  </a>'.'<a href="profil.php?deconnexion">
